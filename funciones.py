@@ -25,39 +25,47 @@ def calcular_resistencias(Vin, I, Vout):
     return resultados
 
 
+def es_numero(texto):
+    """Valida enteros y decimales (con punto), sin usar try/except."""
+    return texto.replace(".", "", 1).isdigit()
 
+
+# Pedir Vin
 while True:
     voltaje_in = input("\n°ingrese su voltaje inicial (Vin)\n\n")
-    if voltaje_in.isdigit():
+    if es_numero(voltaje_in):
         Vin = float(voltaje_in)
         break
     else:
         print("ingresa una variable valida por favor")
 
+# Pedir I (corriente), no puede ser 0
 while True:
     corriente = input("\n°ingrese la corriente (I)\n\n")
-    if corriente.isdigit() and corriente != "0":
+    if es_numero(corriente) and float(corriente) != 0:
         I = float(corriente)
         break
     else:
         print("ingresa una variable valida por favor")
 
-
+# Pedir Vout
 while True:
     voltaje_sal = input("\n°ingrese su voltaje de salida (Vout)\n\n")
-    if voltaje_sal.isdigit():
+    if es_numero(voltaje_sal):
         Vout = float(voltaje_sal)
         break
     else:
         print("ingresa una variable valida por favor")
 
 
+# Llamar a la función
 resultado = calcular_resistencias(Vin, I, Vout)
 
-
+# Mostrar la lista
 print("\nLista de resultados:")
 print(resultado)
 
+# Mostrar cada elemento de la lista
 print("\nResultados:")
 print("R1 =", resultado[0], "ohmios")
 print("R2 =", resultado[1], "ohmios")
